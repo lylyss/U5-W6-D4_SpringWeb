@@ -17,9 +17,6 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    @Autowired
-    private EmailService emailService;
-
     public List<Author> findAll() {
         return authorRepository.findAll();
     }
@@ -33,7 +30,6 @@ public class AuthorService {
         );
         authorRepository.save(newAuthor);
         log.info("Author:" + payload.getNome() + " " + payload.getCognome() + " creato con successo!");
-        emailService.sendConfirmationEmail(newAuthor.getEmail(), newAuthor.getNome());
         return newAuthor;
     }
 
